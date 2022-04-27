@@ -1,0 +1,178 @@
+import { Button, Stack , TextField , MenuItem, Box, FormControlLabel,FormControl, FormLabel,RadioGroup, Radio} from "@mui/material"
+import {Table, TableBody ,TableCell,TableContainer,TableHead,TableRow} from '@mui/material';
+import Paper from '@mui/material/Paper';
+import "./MuiForm.css";
+import * as React from 'react';
+import { useState} from 'react'
+import { nanoid } from "nanoid";
+import { NavigateNextOutlined } from "@mui/icons-material";
+
+
+type arrProps={
+  name: string,
+  pass: string,
+  country: string,
+  gender : string,
+}
+
+const dumArr: arrProps[]=[]
+
+// const arr :string[] = ['']
+export const FormAction = () => {
+  const [contacts, setContacts] = useState(dumArr)
+    const [name, setName] = useState('')
+    const [pass, setPass] = useState('')
+    const [country, setCountry] = useState('')
+    const [gender, setGender] = useState('')
+    const [editContactId, setEditContactId] = useState(null);
+    const handleChange= (e : React.ChangeEvent<HTMLInputElement>)=>{
+        setCountry(e.target.value as string)
+    }
+    const handleChange1 = (e : React.ChangeEvent<HTMLInputElement>) =>{
+        setGender(e.target.value)
+    }
+
+    // const onClicking = (e: React.MouseEvent<HTMLButtonElement>)=>{
+    //   e.preventDefault()
+    //   dumArr.push({name,pass,country, gender})
+    //     console.log(dumArr);
+   
+    // }
+    const onSubmit=(e: React.FormEvent<HTMLFormElement>) =>{
+      e.preventDefault()
+      dumArr.push({name,pass,country, gender})
+        console.log(dumArr);
+        const newContact = {
+          id: nanoid(),
+          name : name,
+          pass : pass,
+          country : country,
+          gender : gender
+        }
+        const newContacts = [...contacts, newContact];
+    setContacts(newContacts);  
+    }
+
+    const [editFormData, setEditFormData] = useState({
+        name : '',
+          pass : '',
+          country : '',
+          gender : '',
+      });
+
+    const handleEditFormSubmit = (e : React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+    
+        const editedContact ={
+          id : editContactId,
+          name : name,
+          pass : pass,
+          country : country,
+          gender : gender
+        };
+    
+        const newContacts = [...contacts];
+    
+        const index = contacts.findIndex((contact) => contact.id === editContactId);
+    
+        newContacts[index] = editedContact;
+    
+        setContacts(newContacts);
+        setEditContactId(null);
+      };
+    
+      const handleEditClick = (e : React.ChangeEvent<HTMLInputElement>, contact) => {
+        e.preventDefault();
+        setEditContactId(contact.id);
+    
+        const formValues = {
+            name : name,
+            pass : pass,
+            country : country,
+            gender : gender
+        };
+    
+        setEditFormData(formValues);
+      };
+    
+      const handleCancelClick = () => {
+        setEditContactId(null);
+      };
+    
+      const handleDeleteClick = (contactId) => {
+        const newContacts = [...contacts];
+    
+        const index = contacts.findIndex((contact) => contact.id === contactId);
+    
+        newContacts.splice(index, 1);
+    
+        setContacts(newContacts);
+      };
+    
+
+  return (
+    <Stack >
+        <form className="form" onSubmit={onSubmit}>
+        <Box
+        
+      sx={{
+        width: 350,
+        padding: 2,
+        height: 350,
+
+      }}
+    >
+        <TextField label='UserName' value={name} onChange={(e) => setName(e.target.value)} variant='outlined'/>
+        <TextField
+            label='PassWord'
+            required
+            type='password'
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+            error={!pass}
+            helperText={!pass ? 'Required' : 'Dont share your credentials'}
+        />
+        <TextField label='Select Country' value={country} onChange={handleChange} select fullWidth>
+            <MenuItem value='IN'>India</MenuItem>
+            <MenuItem value='US'>USA</MenuItem>
+            <MenuItem value='AU'>Australia</MenuItem>
+        </TextField>
+        {/* <MuiRadioBtn /> */}
+        <Box>
+        <FormControl>
+            <FormLabel id='job-experience-group-label'>
+                Gender
+            </FormLabel>
+            <RadioGroup name='job-experience-group' aria-labelledby='job-experience-group-label' value={gender} onChange={handleChange1} row>
+                <FormControlLabel control={<Radio />} label='Male' value='male' />
+                <FormControlLabel control={<Radio />} label='Female' value='female' />
+            </RadioGroup>
+        </FormControl>
+    </Box>
+        <Button  type='submit' variant="contained" >Submit</Button>
+        </Box>
+        </form>
+        <tbody>
+            {contacts.map((contact) => (
+              <Fragment>
+                {editContactId === contact.id ? (
+                  <EditableRow
+                    editFormData={editFormData}
+                    handleEditFormChange={handleEditFormChange}
+                    handleCancelClick={handleCancelClick}
+                  />
+                ) : (
+                  <ReadOnlyRow
+                    contact={contact}
+                    handleEditClick={handleEditClick}
+                    handleDeleteClick={handleDeleteClick}
+                  />
+                )}
+              </Fragment>
+            ))}
+          </tbody>
+    </Stack>
+  )
+}
+
+

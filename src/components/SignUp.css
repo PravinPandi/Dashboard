@@ -1,0 +1,6 @@
+body{
+    margin: 0;
+    background-image: url(./purple.jpeg);
+    height: 100%;
+    background-size: cover;
+}

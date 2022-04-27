@@ -1,0 +1,85 @@
+@import '~antd/dist/antd.css';
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  color: White;
+}
+
+
+.mainlogo{
+  float: Right;
+  color: White;
+}
+.loki {
+  float: left;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.sider{
+  background-color: white;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+
+}
+
+.mainhead{
+  background-color: #01bcd4;
+}
+
+.stock{
+  font-size: 40px;
+  color: White;
+  background-color: #3dbd7d;
+  border-radius: 50%;
+  border: 0px solid;
+  padding: 20px;
+}
+
+.users{
+  font-size: 40px;
+  color: White;
+  background-color: #01bcd4;
+  border-radius: 50%;
+  border: 0px solid;
+  padding: 20px;
+}
+
+.dollar{
+  font-size: 40px;
+  color: White;
+  background-color: #ffce3d;
+  border-radius: 50%;
+  border: 0px solid;
+  padding: 20px;
+}
+
+.cart{
+  font-size: 40px;
+  color: White;
+  background-color: #108ee9;
+  border-radius: 50%;
+  border: 0px solid;
+  padding: 20px;
+}
+
+.b{
+  font-size: 100px;
+}
+
+.usericon{
+  font-size: 40px;
+  color: White;
+  background-color: #108ee9;
+  border-radius: 50%;
+  border: 0px solid;
+  padding: 20px;
+}
+
+.dropdown{
+  float: Right;
+  font-size:15px;
+  color: black;
+}

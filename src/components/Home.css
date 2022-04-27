@@ -1,0 +1,33 @@
+h3{
+    text-align: center;
+  }
+  .pics{
+    display:inline-block;
+    padding: 5px;
+    margin: 10px;
+  }
+  img{
+    height:230px;
+    width:230px;
+    margin:5px;
+    padding-left: 20px;
+    /* float:right;*/
+  }
+  .des{
+    text-align: center;
+  }
+  p{
+    text-align: center;
+  }
+  button{
+    margin: 5px;
+    cursor: pointer;
+  }
+  h6{
+    font-size:16px;
+    font-weight: 500;
+  }
+
+  .txtdiv{
+    text-align: center;
+  }
