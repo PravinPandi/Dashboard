@@ -1,3 +1,9 @@
+#Script to Download AntDesign 
+
+### `npm i antd`
+
+#The Related Folders was in the ./react-mui-demo/src/admin#Script to Download AntDesign 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
